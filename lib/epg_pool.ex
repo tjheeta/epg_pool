@@ -20,6 +20,15 @@ defmodule EpgPool do
       end)
   end
 
+  def create(pool, sql) do
+    :poolboy.transaction(pool, 
+      fn(worker) -> 
+        {:ok, rows} = :gen_server.call(worker, {:squery, sql})
+
+        cr_to_keyword_list(columns, rows)
+      end)
+  end
+
   defp cr_to_keyword_list(columns, rows) do
     # Right to left - keep order
     List.foldr(rows, [], fn (row, acc) -> 
