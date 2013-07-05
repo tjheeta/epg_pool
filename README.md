@@ -22,3 +22,5 @@
 
     EpgPool.sq(:poll_name, "SELECT") # will query to pool with ':poll_name'
 
+    EpgPool.create("INSERT INTO ...") #for insert/update statements use create
+
