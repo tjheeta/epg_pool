@@ -20,12 +20,17 @@ defmodule EpgPool do
       end)
   end
 
+  #needs to DRY this couple of methods
+  def create(sql) when is_binary(sql) do
+    create(:main_pool, sql)
+  end
+
   def create(pool, sql) do
     :poolboy.transaction(pool, 
       fn(worker) -> 
         {:ok, rows} = :gen_server.call(worker, {:squery, sql})
 
-        cr_to_keyword_list(columns, rows)
+        rows
       end)
   end
 
