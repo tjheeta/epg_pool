@@ -15,7 +15,9 @@ defmodule EpgPool.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [ { :poolboy, github: "devinus/poolboy" },
+    [ 
+      #{ :poolboy, github: "devinus/poolboy" },
+      {:poolboy, "~> 1.4"},
       { :epgsql, github: "wg/epgsql"}
     ]
   end

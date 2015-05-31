@@ -1,5 +1,5 @@
 defmodule EpgPool do
-  use Application.Behaviour
+  use Application
 
   # See http://elixir-lang.org/docs/stable/Application.Behaviour.html
   # for more information on OTP Applications
@@ -41,7 +41,7 @@ defmodule EpgPool do
       # Join columns names with actual data
       { _, result } = Enum.reduce(columns, {0, []}, fn(column, {count, acc}) ->
 
-        key = binary_to_atom( elem(column, 1) )
+        key = String.to_atom( elem(column, 1) )
 
         value = elem( row, count )
 
